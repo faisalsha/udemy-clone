@@ -26,4 +26,9 @@ class Authentication {
 
     return 'Error Occured';
   }
+
+  Future<String> googleSignOut() async {
+    _googleSignIn.signOut();
+    return 'Error out';
+  }
 }

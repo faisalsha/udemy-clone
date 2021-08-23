@@ -2,6 +2,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:udemyclone/Screens/HomeScreen/HomeScreen.dart';
 import 'package:udemyclone/Screens/SigninOptions/signup.dart';
 import 'package:udemyclone/Services/authentication.dart';
 
@@ -21,12 +22,45 @@ class _SignInState extends State<SignIn> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              'SignIn',
-              style: TextStyle(
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              child: Text(
+                'SignIn',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 0),
+              child: FlatButton.icon(
                   color: Colors.white,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold),
+                  onPressed: () async {
+                    await authentication.googleSignIn();
+                  },
+                  icon: Icon(EvaIcons.email),
+                  label: Text('Sign in with Email')),
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 190,
+                  child: Divider(
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'or',
+                  style: TextStyle(color: Colors.white),
+                ),
+                SizedBox(
+                  width: 180,
+                  child: Divider(
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             ),
             SizedBox(
               height: 10,
@@ -36,7 +70,13 @@ class _SignInState extends State<SignIn> {
               child: FlatButton.icon(
                   color: Colors.white,
                   onPressed: () async {
-                    await authentication.googleSignIn();
+                    await authentication.googleSignIn().whenComplete(() {
+                      Navigator.pushReplacement(
+                          context,
+                          PageTransition(
+                              child: HomeScreen(),
+                              type: PageTransitionType.leftToRight));
+                    });
                   },
                   icon: Icon(EvaIcons.google),
                   label: Text('Sign in with google')),

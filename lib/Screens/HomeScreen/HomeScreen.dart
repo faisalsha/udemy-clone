@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:udemyclone/Tabs/Accounts.dart';
 import 'package:udemyclone/Tabs/Featured.dart';
@@ -11,6 +12,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  FirebaseMessaging firebaseMessaging;
+  String _message;
+
   PageController _controller = PageController();
   int currentIndex = 0;
 
@@ -19,6 +23,11 @@ class _HomeScreenState extends State<HomeScreen> {
       currentIndex = page;
     });
     _controller.jumpToPage(page);
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override

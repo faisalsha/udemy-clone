@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/utils.dart';
+import 'package:udemyclone/Screens/DetailSection/detailsScreen.dart';
 import 'package:udemyclone/Screens/MyList/myListScreen.dart';
 import 'package:udemyclone/Services/dataController.dart';
 import 'package:get/get.dart';
@@ -101,118 +102,126 @@ class _FeaturedState extends State<Featured> {
                               scrollDirection: Axis.horizontal,
                               itemCount: snapshot.data.length,
                               itemBuilder: (context, int index) {
-                                return Container(
-                                  height: 200,
-                                  padding: EdgeInsets.symmetric(horizontal: 5),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Image.network(
-                                        snapshot.data[index].data()['image'],
-                                        fit: BoxFit.cover,
-                                        height: 190,
-                                        // width: 200,
-                                      ),
-                                      SizedBox(
-                                        height: 3,
-                                      ),
-                                      Text(
-                                        snapshot.data[index].data()['title'],
-                                        // 'course 1',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 16),
-                                      ),
-                                      SizedBox(
-                                        height: 3,
-                                      ),
-                                      Text(
-                                        "by " +
-                                            snapshot.data[index]
-                                                .data()['author'],
-                                        // 'course 1',
-                                        style: TextStyle(
-                                            color: Colors.grey.shade400,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 13),
-                                      ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            EvaIcons.star,
-                                            color: Colors.yellowAccent,
-                                          ),
-                                          Icon(
-                                            EvaIcons.star,
-                                            color: Colors.yellowAccent,
-                                          ),
-                                          Icon(
-                                            EvaIcons.star,
-                                            color: Colors.yellowAccent,
-                                          ),
-                                          Icon(
-                                            EvaIcons.star,
-                                            color: Colors.yellowAccent,
-                                          ),
-                                          Icon(
-                                            EvaIcons.star,
-                                            color: Colors.yellowAccent,
-                                          ),
-                                          SizedBox(
-                                            width: 3,
-                                          ),
-                                          Text(
-                                            '(${snapshot.data[index].data()['enrolled']})',
-                                            // 'course 1',
-                                            style: TextStyle(
-                                                color: Colors.grey.shade400,
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 13),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 4,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            FontAwesomeIcons.rupeeSign,
-                                            color: Colors.white,
-                                            size: 19,
-                                          ),
-                                          Text(
-                                            '${snapshot.data[index].data()['price']}',
-                                            // 'course 1',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 20),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 4,
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 10, vertical: 3),
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                          color: Colors.yellow,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
+                                return GestureDetector(
+                                  onTap: () {
+                                    print("pressed");
+                                    Get.to(DetailScreen(),
+                                        arguments: snapshot.data[index]);
+                                  },
+                                  child: Container(
+                                    height: 200,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 5),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Image.network(
+                                          snapshot.data[index].data()['image'],
+                                          fit: BoxFit.cover,
+                                          height: 190,
+                                          // width: 200,
                                         ),
-                                        child: Text(
-                                          'Best seller',
+                                        SizedBox(
+                                          height: 3,
+                                        ),
+                                        Text(
+                                          snapshot.data[index].data()['title'],
+                                          // 'course 1',
                                           style: TextStyle(
-                                              color: Colors.brown,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w400,
                                               fontSize: 16),
                                         ),
-                                      )
-                                    ],
+                                        SizedBox(
+                                          height: 3,
+                                        ),
+                                        Text(
+                                          "by " +
+                                              snapshot.data[index]
+                                                  .data()['author'],
+                                          // 'course 1',
+                                          style: TextStyle(
+                                              color: Colors.grey.shade400,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 13),
+                                        ),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              EvaIcons.star,
+                                              color: Colors.yellowAccent,
+                                            ),
+                                            Icon(
+                                              EvaIcons.star,
+                                              color: Colors.yellowAccent,
+                                            ),
+                                            Icon(
+                                              EvaIcons.star,
+                                              color: Colors.yellowAccent,
+                                            ),
+                                            Icon(
+                                              EvaIcons.star,
+                                              color: Colors.yellowAccent,
+                                            ),
+                                            Icon(
+                                              EvaIcons.star,
+                                              color: Colors.yellowAccent,
+                                            ),
+                                            SizedBox(
+                                              width: 3,
+                                            ),
+                                            Text(
+                                              '(${snapshot.data[index].data()['enrolled']})',
+                                              // 'course 1',
+                                              style: TextStyle(
+                                                  color: Colors.grey.shade400,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 13),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              FontAwesomeIcons.rupeeSign,
+                                              color: Colors.white,
+                                              size: 19,
+                                            ),
+                                            Text(
+                                              '${snapshot.data[index].data()['price']}',
+                                              // 'course 1',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 20),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 10, vertical: 3),
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: Colors.yellow,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Text(
+                                            'Best seller',
+                                            style: TextStyle(
+                                                color: Colors.brown,
+                                                fontSize: 16),
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 );
                               });
@@ -288,102 +297,109 @@ class _FeaturedState extends State<Featured> {
                               scrollDirection: Axis.horizontal,
                               itemCount: snapshot.data.length,
                               itemBuilder: (context, int index) {
-                                return Container(
-                                  height: 200,
-                                  padding: EdgeInsets.symmetric(horizontal: 5),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Image.network(
-                                        snapshot.data[index].data()['image'],
-                                        // height: 230,
-                                        // width: 250,
-                                        fit: BoxFit.cover,
-                                      ),
-                                      // SizedBox(
-                                      //   height: 3,
-                                      // ),
-                                      Text(
-                                        snapshot.data[index].data()['title'],
-                                        // 'course 1',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 16),
-                                      ),
-                                      SizedBox(
-                                        height: 3,
-                                      ),
-                                      Text(
-                                        "by " +
-                                            snapshot.data[index]
-                                                .data()['author'],
-                                        // 'course 1',
-                                        style: TextStyle(
-                                            color: Colors.grey.shade400,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 13),
-                                      ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            EvaIcons.star,
-                                            color: Colors.yellowAccent,
-                                          ),
-                                          Icon(
-                                            EvaIcons.star,
-                                            color: Colors.yellowAccent,
-                                          ),
-                                          Icon(
-                                            EvaIcons.star,
-                                            color: Colors.yellowAccent,
-                                          ),
-                                          Icon(
-                                            EvaIcons.star,
-                                            color: Colors.yellowAccent,
-                                          ),
-                                          Icon(
-                                            EvaIcons.star,
-                                            color: Colors.yellowAccent,
-                                          ),
-                                          SizedBox(
-                                            width: 3,
-                                          ),
-                                          Text(
-                                            '(${snapshot.data[index].data()['enrolled']})',
-                                            // 'course 1',
-                                            style: TextStyle(
-                                                color: Colors.grey.shade400,
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 13),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 4,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            FontAwesomeIcons.rupeeSign,
-                                            color: Colors.white,
-                                            size: 19,
-                                          ),
-                                          Text(
-                                            '${snapshot.data[index].data()['price']}',
-                                            // 'course 1',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 20),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 4,
-                                      ),
-                                    ],
+                                return GestureDetector(
+                                  onTap: () {
+                                    Get.to(DetailScreen(),
+                                        arguments: snapshot.data[index]);
+                                  },
+                                  child: Container(
+                                    height: 200,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 5),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Image.network(
+                                          snapshot.data[index].data()['image'],
+                                          // height: 230,
+                                          // width: 250,
+                                          fit: BoxFit.cover,
+                                        ),
+                                        // SizedBox(
+                                        //   height: 3,
+                                        // ),
+                                        Text(
+                                          snapshot.data[index].data()['title'],
+                                          // 'course 1',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 16),
+                                        ),
+                                        SizedBox(
+                                          height: 3,
+                                        ),
+                                        Text(
+                                          "by " +
+                                              snapshot.data[index]
+                                                  .data()['author'],
+                                          // 'course 1',
+                                          style: TextStyle(
+                                              color: Colors.grey.shade400,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 13),
+                                        ),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              EvaIcons.star,
+                                              color: Colors.yellowAccent,
+                                            ),
+                                            Icon(
+                                              EvaIcons.star,
+                                              color: Colors.yellowAccent,
+                                            ),
+                                            Icon(
+                                              EvaIcons.star,
+                                              color: Colors.yellowAccent,
+                                            ),
+                                            Icon(
+                                              EvaIcons.star,
+                                              color: Colors.yellowAccent,
+                                            ),
+                                            Icon(
+                                              EvaIcons.star,
+                                              color: Colors.yellowAccent,
+                                            ),
+                                            SizedBox(
+                                              width: 3,
+                                            ),
+                                            Text(
+                                              '(${snapshot.data[index].data()['enrolled']})',
+                                              // 'course 1',
+                                              style: TextStyle(
+                                                  color: Colors.grey.shade400,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 13),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              FontAwesomeIcons.rupeeSign,
+                                              color: Colors.white,
+                                              size: 19,
+                                            ),
+                                            Text(
+                                              '${snapshot.data[index].data()['price']}',
+                                              // 'course 1',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 20),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 );
                               });
